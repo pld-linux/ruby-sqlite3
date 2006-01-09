@@ -1,6 +1,6 @@
 %define tarname sqlite3-ruby
-Summary:	SQLite module for Ruby
-Summary(pl):	Modu³ SQLite dla Ruby
+Summary:	SQLite3 module for Ruby
+Summary(pl):	Modu³ SQLite3 dla Ruby
 Name:		ruby-sqlite3
 Version:	1.1.0
 Release:	0
@@ -18,10 +18,10 @@ BuildRequires:	swig-ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-SQLite module for Ruby.
+SQLite3 module for Ruby.
 
 %description -l pl
-Modu³ SQLite dla Ruby.
+Modu³ SQLite3 dla Ruby.
 
 %prep
 %setup -q -n %{tarname}-%{version}
