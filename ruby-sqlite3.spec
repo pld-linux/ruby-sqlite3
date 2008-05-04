@@ -2,16 +2,16 @@
 Summary:	SQLite3 module for Ruby
 Summary(pl.UTF-8):	Moduł SQLite3 dla Ruby
 Name:		ruby-sqlite3
-Version:	1.1.0
-Release:	0
+Version:	1.2.1
+Release:	1
 License:	GPL
 Group:		Development/Languages
-Source0:	http://rubyforge.org/frs/download.php/3089/%{tarname}-%{version}.tar.bz2
-# Source0-md5:	83c6c16dc40a282931edfd0525d3aaf3
+Source0:	http://rubyforge.org/frs/download.php/17096/%{tarname}-%{version}.tar.bz2
+# Source0-md5:	7ec13981e20bab8af024db3c1df4a602
 URL:		http://sqlite-ruby.rubyforge.org/sqlite3/
-BuildRequires:	rpmbuild(macros) >= 1.277
+BuildRequires:	rpmbuild(macros) >= 1.142
 BuildRequires:	ruby-modules
-BuildRequires:	setup.rb = 3.3.1
+BuildRequires:	setup.rb >= 3.4.1
 BuildRequires:	sqlite3-devel
 BuildRequires:	swig-ruby
 %{?ruby_mod_ver_requires_eq}
@@ -25,17 +25,17 @@ Moduł SQLite3 dla Ruby.
 
 %prep
 %setup -q -n %{tarname}-%{version}
-cp %{_datadir}/setup.rb .
+cp /usr/share/setup.rb .
 
 %build
 ruby setup.rb config \
-	--rbdir=%{ruby_rubylibdir} \
-	--sodir=%{ruby_archdir}
+	--rbdir=%{ruby_vendorlibdir} \
+	--sodir=%{ruby_vendorarchdir}
 ruby setup.rb setup
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{ruby_archdir}
+install -d $RPM_BUILD_ROOT%{ruby_vendorarchdir}
 
 ruby setup.rb install \
 	--prefix=$RPM_BUILD_ROOT
@@ -46,6 +46,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README*
-%attr(755,root,root) %{ruby_archdir}/*
-%{ruby_rubylibdir}/sqlite3
-%{ruby_rubylibdir}/sqlite3.rb
+%attr(755,root,root) %{ruby_vendorarchdir}/*
+%{ruby_vendorlibdir}/sqlite3
+%{ruby_vendorlibdir}/sqlite3.rb
