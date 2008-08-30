@@ -8,6 +8,7 @@ License:	GPL
 Group:		Development/Languages
 Source0:	http://rubyforge.org/frs/download.php/42055/%{tarname}-%{version}.tar.bz2
 # Source0-md5:	fe75fa99dd9a2b5a2f84ab484e7f6469
+Patch0:		%{name}-threadmutex.patch
 URL:		http://sqlite-ruby.rubyforge.org/sqlite3/
 BuildRequires:	rpmbuild(macros) >= 1.142
 BuildRequires:	ruby-modules
@@ -25,6 +26,7 @@ Moduł SQLite3 dla Ruby.
 
 %prep
 %setup -q -n %{tarname}-%{version}
+%patch0 -p1
 cp /usr/share/setup.rb .
 
 %build
