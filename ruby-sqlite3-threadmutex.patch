@@ -1,0 +1,35 @@
+diff -Nur sqlite3-ruby-1.2.4.orig/lib/sqlite3/database.rb sqlite3-ruby-1.2.4.threadmutex/lib/sqlite3/database.rb
+--- sqlite3-ruby-1.2.4.orig/lib/sqlite3/database.rb	2008-06-26 07:52:02.000000000 -0600
++++ sqlite3-ruby-1.2.4.threadmutex/lib/sqlite3/database.rb	2008-08-30 10:44:55.000000000 -0600
+@@ -4,6 +4,7 @@
+ require 'sqlite3/statement'
+ require 'sqlite3/translator'
+ require 'sqlite3/value'
++require 'thread'
+ 
+ module SQLite3
+ 
+@@ -82,6 +83,7 @@
+       @results_as_hash = options.fetch(:results_as_hash,false)
+       @type_translation = options.fetch(:type_translation,false)
+       @translator = nil
++      @transaction_mutex = Mutex.new
+       @transaction_active = false
+     end
+ 
+@@ -151,6 +153,7 @@
+     # The Statement can then be executed using Statement#execute.
+     #
+     def prepare( sql )
++      @transaction_mutex.synchronize do
+       stmt = @statement_factory.new( self, sql )
+       if block_given?
+         begin
+@@ -161,6 +164,7 @@
+       else
+         return stmt
+       end
++    end
+     end
+ 
+     # Executes the given SQL statement. If additional parameters are given,
