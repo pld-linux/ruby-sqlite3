@@ -15,7 +15,11 @@ Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
 URL:		https://github.com/sparklemotion/sqlite3-ruby
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
+BuildRequires:	ruby-devel
+BuildRequires:	ruby-hoe
+BuildRequires:	ruby-minitest
 BuildRequires:	ruby-modules
+BuildRequires:	ruby-rake-compiler
 BuildRequires:	sqlite3-devel
 Obsoletes:	sqlite3-ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
