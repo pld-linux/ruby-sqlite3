@@ -36,9 +36,7 @@ Summary(pl.UTF-8):	Dokumentacja w formacie HTML dla %{pkgname}
 Group:		Documentation
 Requires:	ruby >= 1:1.8.7-4
 # noarch subpackages only when building with rpm5
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description rdoc
 HTML documentation for %{pkgname}.
@@ -52,9 +50,7 @@ Summary(pl.UTF-8):	Dokumentacja w formacie ri dla %{pkgname}
 Group:		Documentation
 Requires:	ruby
 # noarch subpackages only when building with rpm5
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description ri
 ri documentation for %{pkgname}.
