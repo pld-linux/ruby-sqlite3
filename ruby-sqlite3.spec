@@ -6,20 +6,17 @@
 Summary:	SQLite3 module for Ruby
 Summary(pl.UTF-8):	Moduł SQLite3 dla Ruby
 Name:		ruby-sqlite3
-Version:	1.4.2
+Version:	2.9.2
 Release:	1
-License:	GPL
+License:	BSD
 Group:		Development/Languages
 Source0:	http://rubygems.org/downloads/%{pkgname}-%{version}.gem
-# Source0-md5:	cbea8e3b843acd9cf36402538cf1e9dd
+# Source0-md5:	8536ccb2de363c0b0c7daae7d20d388c
 URL:		https://github.com/sparklemotion/sqlite3-ruby
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.665
 BuildRequires:	ruby-devel
-BuildRequires:	ruby-hoe
-BuildRequires:	ruby-minitest
 BuildRequires:	ruby-modules
-BuildRequires:	ruby-rake-compiler
 BuildRequires:	sqlite3-devel
 Obsoletes:	sqlite3-ruby
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -66,7 +63,8 @@ Dokumentacji w formacie ri dla %{pkgname}.
 %__gem_helper spec
 
 cd ext/%{pkgname}
-%{__ruby} extconf.rb
+%{__ruby} extconf.rb \
+	--enable-system-libraries
 %{__make} \
 	CC="%{__cc}" \
 	LDFLAGS="%{rpmldflags}" \
@@ -96,7 +94,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README*
+%doc CHANGELOG.md README.md
 %dir %{ruby_vendorarchdir}/sqlite3
 %attr(755,root,root) %{ruby_vendorarchdir}/sqlite3/sqlite3_native.so
 %{ruby_vendorlibdir}/sqlite3
