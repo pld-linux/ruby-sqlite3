@@ -1,0 +1,10 @@
+Remove mini_portile2 runtime dependency from gemspec.
+Not needed when building with --enable-system-libraries (system sqlite3).
+
+--- a/sqlite3-2.9.2.gemspec.orig
++++ b/sqlite3-2.9.2.gemspec
+@@ -24,5 +24,4 @@
+   s.specification_version = 4
+
+-  s.add_runtime_dependency(%q<mini_portile2>.freeze, ["~> 2.8.0".freeze])
+ end
